@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 import { protect } from "./modules/auth";
 import { createNewUser, signin } from "./handlers/user";
+import prisma from "./db";
 
 const app = express();
 
@@ -15,9 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", protect, router);
 
 app.get("/", (req, res) => {
-  console.log("hello ffrom express");
+  console.log("hello ffrom express vishal gaurav");
   res.status(200);
-  res.json({ message: "hello" });
+  res.json({ message: "hello vishal" });
+});
+
+app.get("/products", async (req, res) => {
+  const product = await prisma.product.findMany();
+  res.status(200);
+  res.json({ data: product });
 });
 
 app.post("/user", createNewUser);

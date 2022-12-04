@@ -3,6 +3,7 @@ import prisma from "../db";
 
 //get all
 export const getProducts = async (req, res) => {
+  console.log("inside product");
   const user = await prisma.user.findUnique({
     where: {
       id: req.user.id,
@@ -36,6 +37,8 @@ export const createProduct = async (req, res, next) => {
         price: req.body.price,
         description: req.body.description,
         imageURL: req.body.imageURL,
+        category: req.body.category,
+        type: req.body.type,
       },
     });
     res.json({ data: product });

@@ -24,6 +24,7 @@ export const signin = async (req, res) => {
       username: req.body.username,
     },
   });
+  console.log(user);
   const isValid = await comparePasswords(req.body.password, user.password);
   if (!isValid) {
     res.status(401);
@@ -31,7 +32,11 @@ export const signin = async (req, res) => {
     return;
   }
   const token = createJWT(user);
-  res.json({ token });
+  const id = user.id;
+  res.json({ token, id });
 };
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI5YWU2MzZkLWFhN2QtNGVlZC1hMDViLTFjYjFkNTY2YjkwZSIsInVzZXJuYW1lIjoidmlzaGFsIiwiaWF0IjoxNjY4NDE2MDQxfQ.ux7nQ1bTpnm3zILKDUJFQio2RB3h7JZuz5fR7K1mU4U
+// {
+//   "username":"vishal",
+//   "password":"admin"
+// }

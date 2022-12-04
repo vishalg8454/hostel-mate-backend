@@ -20,6 +20,8 @@ export const createJWT = (user) => {
 };
 
 export const protect = (req, res, next) => {
+  // next();
+  // return;
   const bearer = req.headers.authorization;
   if (!bearer) {
     res.status(401);

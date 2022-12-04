@@ -27,6 +27,8 @@ model Product {
   id          String   @id @default(uuid())
   createdAt   DateTime @default(now())
   name        String   @db.VarChar(255)
+  category    String   @default("")
+  type        String   @default("")
   price       Int
   description String
   imageURL    String
